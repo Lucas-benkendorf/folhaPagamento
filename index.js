@@ -16,3 +16,28 @@ adicionarFuncionario(2, 'Ana Santos', 'Designer', 45);
 adicionarFuncionario(3, 'João Pereira', 'Gerente', 60);
 
 console.log(funcionarios);
+
+
+
+
+function registrarHoras(id, horas) {
+
+    const funcionario = funcionarios.find(func => func.id === id);
+
+    if (funcionario) {
+        
+        funcionario.horasTrabalhadas.push(horas);
+    } else {
+        console.log(`Funcionário com ID ${id} não encontrado.`);
+    }
+}
+
+
+registrarHoras(1, 8);  
+registrarHoras(2, 6);  
+registrarHoras(1, 7);  
+registrarHoras(3, 5);  
+
+
+console.log(funcionarios);
+

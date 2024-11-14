@@ -41,3 +41,30 @@ registrarHoras(3, 5);
 
 console.log(funcionarios);
 
+
+
+
+function calcularSalarioMensal(id) {
+
+    const funcionario = funcionarios.find(func => func.id === id);
+
+    if (funcionario) {
+       
+        const totalHoras = funcionario.horasTrabalhadas.reduce((acc, horas) => acc + horas, 0);
+
+       
+        const salarioMensal = totalHoras * funcionario.taxaHoraria;
+
+        return salarioMensal;
+    } else {
+        console.log(`Funcionário com ID ${id} não encontrado.`);
+        return 0;
+    }
+}
+
+
+console.log(`Salário mensal de Carlos Silva: R$${calcularSalarioMensal(1).toFixed(2)}`);
+console.log(`Salário mensal de Ana Santos: R$${calcularSalarioMensal(2).toFixed(2)}`);
+console.log(`Salário mensal de João Pereira: R$${calcularSalarioMensal(3).toFixed(2)}`);
+
+

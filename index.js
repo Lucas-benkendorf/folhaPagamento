@@ -68,3 +68,22 @@ console.log(`Salário mensal de Ana Santos: R$${calcularSalarioMensal(2).toFixed
 console.log(`Salário mensal de João Pereira: R$${calcularSalarioMensal(3).toFixed(2)}`);
 
 
+
+function calcularInss(salarioBruto) {
+    const taxaInss = 0.11; 
+    const tetoInss = 908.85;
+
+    
+    const descontoInss = Math.min(salarioBruto * taxaInss, tetoInss);
+
+    return descontoInss;
+}
+
+
+const salarioCarlos = calcularSalarioMensal(1);
+const salarioAna = calcularSalarioMensal(2);
+const salarioJoao = calcularSalarioMensal(3);
+
+console.log(`Salário de Carlos Silva com desconto de INSS: R$${(salarioCarlos - calcularInss(salarioCarlos)).toFixed(2)}`);
+console.log(`Salário de Ana Santos com desconto de INSS: R$${(salarioAna - calcularInss(salarioAna)).toFixed(2)}`);
+console.log(`Salário de João Pereira com desconto de INSS: R$${(salarioJoao - calcularInss(salarioJoao)).toFixed(2)}`);

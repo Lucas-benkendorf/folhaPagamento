@@ -87,3 +87,30 @@ const salarioJoao = calcularSalarioMensal(3);
 console.log(`Salário de Carlos Silva com desconto de INSS: R$${(salarioCarlos - calcularInss(salarioCarlos)).toFixed(2)}`);
 console.log(`Salário de Ana Santos com desconto de INSS: R$${(salarioAna - calcularInss(salarioAna)).toFixed(2)}`);
 console.log(`Salário de João Pereira com desconto de INSS: R$${(salarioJoao - calcularInss(salarioJoao)).toFixed(2)}`);
+
+
+
+function gerarRelatorioPagamento() {
+    console.log('Relatório de Pagamento\n'.padEnd(50, '-'));
+
+    funcionarios.forEach(funcionario => {
+       
+        const totalHoras = funcionario.horasTrabalhadas.reduce((acc, horas) => acc + horas, 0);
+        const salarioBruto = totalHoras * funcionario.taxaHoraria;
+        const descontoInss = calcularInss(salarioBruto);
+        const salarioLiquido = salarioBruto - descontoInss;
+
+        
+        console.log(`Nome: ${funcionario.nome}`);
+        console.log(`Cargo: ${funcionario.cargo}`);
+        console.log(`Total de Horas: ${totalHoras}`);
+        console.log(`Valor do INSS: R$ ${descontoInss.toFixed(2)}`);
+        console.log(`Salário Bruto: R$ ${salarioBruto.toFixed(2)}`);
+        console.log(`Salário Líquido: R$ ${salarioLiquido.toFixed(2)}\n`);
+    });
+}
+
+
+gerarRelatorioPagamento();
+
+

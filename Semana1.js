@@ -114,3 +114,67 @@ function gerarRelatorioPagamento() {
 gerarRelatorioPagamento();
 
 
+const readline = require('readline');
+
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+
+function gerenciarFolhaPagamento() {
+    console.log('\nSistema de Folha de Pagamento');
+    console.log('1. Adicionar Funcionário');
+    console.log('2. Registrar Horas Trabalhadas');
+    console.log('3. Exibir Relatório de Pagamento');
+    console.log('4. Sair');
+
+    rl.question('\nEscolha uma opção: ', opcao => {
+        switch (opcao) {
+            case '1':
+                rl.question('Digite o ID do funcionário: ', id => {
+                    rl.question('Digite o nome do funcionário: ', nome => {
+                        rl.question('Digite o cargo do funcionário: ', cargo => {
+                            rl.question('Digite a taxa horária do funcionário: ', taxa => {
+                                adicionarFuncionario(parseInt(id), nome, cargo, parseFloat(taxa));
+                                console.log('Funcionário adicionado com sucesso!');
+                                gerenciarFolhaPagamento();
+                            });
+                        });
+                    });
+                });
+                break;
+
+            case '2':
+                rl.question('Digite o ID do funcionário: ', id => {
+                    rl.question('Digite as horas trabalhadas: ', horas => {
+                        registrarHoras(parseInt(id), parseFloat(horas));
+                        console.log('Horas registradas com sucesso!');
+                        gerenciarFolhaPagamento();
+                    });
+                });
+                break;
+
+            case '3':
+                gerarRelatorioPagamento();
+                gerenciarFolhaPagamento();
+                break;
+
+            case '4':
+                console.log('Saindo do sistema...');
+                rl.close();
+                break;
+
+            default:
+                console.log('Opção inválida. Tente novamente.');
+                gerenciarFolhaPagamento();
+                break;
+        }
+    });
+}
+
+
+gerenciarFolhaPagamento();
+
+
